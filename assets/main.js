@@ -18,13 +18,13 @@ const PROJECTS = [
 ];
 
 const NAV = [
-  ['portfolio.html', '作品項目'], ['about.html', '關於澄岩'], ['contact.html', '聯絡我們']
+  ['portfolio.html', '作品項目'], ['about.html', '關於壓力山大'], ['contact.html', '聯絡我們']
 ];
 const here = location.pathname.split('/').pop() || 'index.html';
 
 document.getElementById('site-header').innerHTML = `
 <nav class="wrap nav" aria-label="主選單">
-  <a class="logo" href="index.html"><b>澄岩空間</b><small>STONELINE INTERIOR</small></a>
+  <a class="logo" href="index.html"><b>壓力山大空間</b><small>ALEXANDER INTERIOR</small></a>
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">選單</button>
   <ul class="links" id="links">
     ${NAV.map(([h, t]) => `<li><a href="${h}"${here.startsWith(h.replace('.html','')) || (h==='portfolio.html'&&here==='project.html') ? ' aria-current="page"' : ''}>${t}</a></li>`).join('')}
@@ -34,12 +34,12 @@ document.getElementById('site-header').innerHTML = `
 document.getElementById('site-footer').innerHTML = `
 <div class="wrap">
   <div class="foot">
-    <div><a class="logo" href="index.html"><b>澄岩空間</b><small>STONELINE INTERIOR</small></a></div>
+    <div><a class="logo" href="index.html"><b>壓力山大空間</b><small>ALEXANDER INTERIOR</small></a></div>
     <div><h4>PHONE</h4><p>02-2000-0000</p></div>
-    <div><h4>MAIL</h4><p>hello@stoneline.example</p></div>
+    <div><h4>MAIL</h4><p>hello@alexander.example</p></div>
     <div><h4>VISIT</h4><p>台北市某區示範路 1 號 1 樓<br>（虛構地址）</p></div>
   </div>
-  <div class="copy"><span>© 2026 Stoneline Interior · 練習作品，品牌與作品皆為虛構</span><button id="toTop">回到頂端</button></div>
+  <div class="copy"><span>© 2026 Alexander Interior Design · 作品與地址為示範內容</span><button id="toTop">回到頂端</button></div>
 </div>`;
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
