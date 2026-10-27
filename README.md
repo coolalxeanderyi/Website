@@ -1,9 +1,10 @@
-# 壓力山大空間設計（練習作品）
+# 壓力山大空間設計 Alexander Interior Design
 
-仿室內設計公司官網結構的靜態網站練習，作品與聯絡資訊為示範內容。
+靜態網站（GitHub Pages），黑白單色、細字細線的室內設計公司官網。
 
-- `index.html` 首頁（輪播、關於、作品分類、數字）
-- `portfolio.html` 作品列表，可用 `?cat=club|sales|show|other` 篩選
+- `index.html` 首頁：主視覺輪播＋品牌字幕滾動、關於、作品分類、數字統計
+- `portfolio.html` 作品列表（`?cat=club|sales|show|other`），左右交錯＋視差卡片
 - `project.html?id=p01` 作品內頁
-- `about.html`、`contact.html`
-- 作品資料集中在 `assets/main.js` 的 `PROJECTS`，新增作品只要加一筆
+- `about.html`、`news.html`、`contact.html`
+- 作品資料在 `assets/main.js` 的 `PROJECTS`；圖片放 `assets/img/`（每張作品需要 `名稱.jpg` 與直式裁切 `名稱-tall.jpg`）
+- 目前照片為 AI 生成的示意圖，作品與地址為示範內容

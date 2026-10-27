@@ -4,27 +4,40 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>作品項目 | 壓力山大空間設計</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=2">
+<meta name="description" content="壓力山大空間設計 Alexander Interior Design｜接待中心、樣品屋、公設會所與商業空間設計。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&family=Roboto:wght@100;200;300;500;700&family=Noto+Sans+TC:wght@300;500;600&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
-<header id="site-header"></header>
-<div class="page-head"><div class="wrap"><div class="crumb"><a href="index.html">首頁</a> ／ 作品項目</div><h1 id="ttl">作品項目</h1></div></div>
-<main class="wrap"><div class="filters" id="filters"></div><div class="grid" id="grid"></div></main>
-<footer id="site-footer"></footer>
-<script src="assets/main.js?v=2"></script>
+<main class="wrapper">
+<section class="ptitle"><div class="pbg" data-par="80" style="background-image:url(assets/img/reception.jpg?v=3)"></div>
+<div class="container rv"><small>PROJECTS</small><h1 id="ttl">作品項目</h1><div class="crumb" id="crumb"><a href="index.html">首頁</a> ／ 項目</div></div></section>
+<section class="container">
+  <nav class="tabs" id="tabs" aria-label="作品分類"></nav>
+  <div class="plist" id="plist"></div>
+  <div class="pager"><span>01</span><a href="portfolio.html">ALL</a></div>
+</section>
+</main>
+<script src="assets/main.js?v=3"></script>
 <script>
-const fbox=document.getElementById('filters'), grid=document.getElementById('grid');
-let cur=new URLSearchParams(location.search).get('cat'); if(!CATS[cur]) cur='all';
-function render(){
-  fbox.innerHTML=[['all','全部'],...Object.entries(CATS).map(([k,c])=>[k,c.zh])].map(([k,t])=>`<button data-k="${k}" aria-pressed="${k===cur}">${t}</button>`).join('');
-  document.getElementById('ttl').textContent = cur==='all' ? '作品項目' : CATS[cur].zh;
-  const list = PROJECTS.filter(p => cur==='all' || p.cat===cur);
-  grid.innerHTML = list.map(p=>`<a class="card" href="project.html?id=${p.id}"><div class="img" style="${swatch(p)}"></div><h3>${p.title}</h3><div class="meta"><span>${CATS[p.cat].zh}</span><span>${p.city} · ${p.year}</span></div></a>`).join('');
-}
-fbox.addEventListener('click',e=>{const k=e.target.dataset.k;if(!k)return;cur=k;history.replaceState(null,'',k==='all'?'portfolio.html':'portfolio.html?cat='+k);render();});
-render();
+
+const q=new URLSearchParams(location.search).get('cat'), cat=CATS[q]?q:'all';
+document.getElementById('tabs').innerHTML=[['all','全部'],...Object.entries(CATS).map(([k,c])=>[k,c.zh])]
+  .map(([k,t])=>`<a href="portfolio.html${k==='all'?'':'?cat='+k}" aria-current="${k===cat}">${t}</a>`).join('');
+if(cat!=='all'){ document.getElementById('ttl').textContent=CATS[cat].zh; document.querySelector('.ptitle small').textContent=CATS[cat].en;
+  document.getElementById('crumb').innerHTML=`<a href="index.html">首頁</a> ／ <a href="portfolio.html">項目</a> ／ ${CATS[cat].zh}`;
+  document.title=CATS[cat].zh+' | 壓力山大空間設計'; }
+const list=PROJECTS.filter(p=>cat==='all'||p.cat===cat);
+document.getElementById('plist').innerHTML=list.map((p,i)=>`
+<article class="pitem${i%2?' rev':''}">
+  <a class="media" href="project.html?id=${p.id}"><img data-par="50" src="${IMG(p.img)}" alt="${p.title}" loading="lazy"></a>
+  <div class="deck rv" data-par="-40"><span class="no">${String(i+1).padStart(2,'0')}</span>
+    <small>${CATS[p.cat].en}</small><h3>${p.title}</h3>
+    <div class="meta"><span>${p.city}</span><span>${p.year}</span><span>${p.size}</span></div>
+    <p>${p.text}</p><a class="btn" href="project.html?id=${p.id}">查看作品 ${ARROW}</a></div>
+</article>`).join('');
+ready();
 </script>
 </body>
 </html>

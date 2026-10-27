@@ -4,26 +4,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>作品 | 壓力山大空間設計</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=2">
+<meta name="description" content="壓力山大空間設計 Alexander Interior Design｜接待中心、樣品屋、公設會所與商業空間設計。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&family=Roboto:wght@100;200;300;500;700&family=Noto+Sans+TC:wght@300;500;600&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
-<header id="site-header"></header>
-<div class="page-head"><div class="wrap"><div class="crumb" id="crumb"></div><h1 id="ttl"></h1></div></div>
-<main class="wrap"><div class="detail" id="detail"></div><div class="pager" id="pager"></div></main>
-<footer id="site-footer"></footer>
-<script src="assets/main.js?v=2"></script>
+<main class="wrapper">
+<section class="ptitle"><div class="pbg" id="pbg" data-par="80"></div>
+<div class="container rv"><small id="pen"></small><h1 id="ttl"></h1><div class="crumb" id="crumb"></div></div></section>
+<section class="container"><div class="pd">
+  <div><div class="stick rv">
+    <h2 id="pt"></h2>
+    <dl class="kv" id="spec"></dl>
+    <p class="quote" id="ptx"></p>
+    <a class="btn" href="contact.html">預約諮詢 <svg viewBox="0 0 22 10"><path d="M0 5h21M16 1l5 4-5 4"/></svg></a>
+  </div></div>
+  <div class="shots" id="shots"></div>
+</div></section>
+<nav class="nextp" id="nextp" aria-label="其他作品"></nav>
+</main>
+<script src="assets/main.js?v=3"></script>
 <script>
+
 const id=new URLSearchParams(location.search).get('id');
-const k=Math.max(0,PROJECTS.findIndex(p=>p.id===id)), p=PROJECTS[k];
+const k=Math.max(0,PROJECTS.findIndex(p=>p.id===id)), p=PROJECTS[k], c=CATS[p.cat];
 document.title=p.title+' | 壓力山大空間設計';
-document.getElementById('ttl').textContent=p.title;
-document.getElementById('crumb').innerHTML=`<a href="index.html">首頁</a> ／ <a href="portfolio.html?cat=${p.cat}">${CATS[p.cat].zh}</a> ／ ${p.title}`;
-document.getElementById('detail').innerHTML=`<div><dl class="spec"><dt>類型</dt><dd>${CATS[p.cat].zh}</dd><dt>地點</dt><dd>${p.city}</dd><dt>坪數</dt><dd>${p.size}</dd><dt>年份</dt><dd>${p.year}</dd></dl><p>${p.text}</p></div>
-<div class="gallery"><div style="${swatch(p)}"></div><div style="${swatch(p,90)}"></div><div style="${swatch(p,200)}"></div></div>`;
+document.getElementById('pbg').style.backgroundImage=`url(${IMG(p.img)})`;
+document.getElementById('pen').textContent=c.en;
+document.getElementById('ttl').textContent=document.getElementById('pt').textContent=p.title;
+document.getElementById('crumb').innerHTML=`<a href="index.html">首頁</a> ／ <a href="portfolio.html?cat=${p.cat}">${c.zh}</a> ／ ${p.title}`;
+document.getElementById('spec').innerHTML=[['Type',c.zh],['Location',p.city],['Area',p.size],['Year',p.year]].map(([a,b])=>`<div><dt>${a}</dt><dd>${b}</dd></div>`).join('');
+document.getElementById('ptx').textContent=p.text;
+const other=PROJECTS.filter(x=>x.id!==p.id&&x.cat===p.cat)[0]||PROJECTS[(k+1)%PROJECTS.length];
+document.getElementById('shots').innerHTML=`
+<figure class="rv"><img data-par="40" src="${IMG(p.img)}" alt="${p.title} 全景"><figcaption>01 — 全景</figcaption></figure>
+<div class="pair rv"><figure><img src="${IMG(p.img+'-tall')}" alt="${p.title} 局部"><figcaption>02 — 局部</figcaption></figure>
+<figure><img src="${IMG(other.img+'-tall')}" alt="材質延伸"><figcaption>03 — 材質延伸</figcaption></figure></div>`;
 const prev=PROJECTS[(k-1+PROJECTS.length)%PROJECTS.length], next=PROJECTS[(k+1)%PROJECTS.length];
-document.getElementById('pager').innerHTML=`<a href="project.html?id=${prev.id}">← ${prev.title}</a><a href="project.html?id=${next.id}">${next.title} →</a>`;
+document.getElementById('nextp').innerHTML=[[prev,'PREV PROJECT'],[next,'NEXT PROJECT']].map(([x,l])=>`<a href="project.html?id=${x.id}"><img src="${IMG(x.img)}" alt="" loading="lazy"><span><small>${l}</small><b>${x.title}</b></span></a>`).join('');
+ready();
 </script>
 </body>
 </html>

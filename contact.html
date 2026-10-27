@@ -4,30 +4,40 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>聯絡我們 | 壓力山大空間設計</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=2">
+<meta name="description" content="壓力山大空間設計 Alexander Interior Design｜接待中心、樣品屋、公設會所與商業空間設計。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&family=Roboto:wght@100;200;300;500;700&family=Noto+Sans+TC:wght@300;500;600&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
-<header id="site-header"></header>
-<div class="page-head"><div class="wrap"><div class="crumb"><a href="index.html">首頁</a> ／ 聯絡我們</div><h1>聯絡我們</h1></div></div>
-<main class="wrap contact">
-  <div>
-    <div class="eyebrow">Contact</div>
-    <h2>聊聊你的案子</h2>
-    <dl class="spec"><dt>電話</dt><dd>02-2000-0000</dd><dt>信箱</dt><dd>hello@alexander.example</dd><dt>地址</dt><dd>台北市某區示範路 1 號 1 樓（虛構）</dd><dt>時間</dt><dd>週一至週五 10:00–19:00</dd></dl>
+<main class="wrapper">
+<section class="ptitle"><div class="pbg" data-par="80" style="background-image:url(assets/img/arch.jpg?v=3)"></div>
+<div class="container rv"><small>CONTACT</small><h1 id="ttl">聯絡我們</h1><div class="crumb" id="crumb"><a href="index.html">首頁</a> ／ 聯絡我們</div></div></section>
+<section class="container"><div class="ct">
+  <div class="rv">
+    <h2 class="h-sec">Get in <strong>touch</strong></h2>
+    <dl class="kv">
+      <div><dt>Phone</dt><dd>02-2000-0000<br>02-2000-0001</dd></div>
+      <div><dt>Mail</dt><dd>hello@alexander.example</dd></div>
+      <div><dt>Visit</dt><dd>台北市某區示範路 1 號 1 樓（示範地址）</dd></div>
+      <div><dt>Hours</dt><dd>週一至週五 10:00–19:00</dd></div>
+    </dl>
   </div>
-  <form id="f">
-    <label for="n">姓名<input id="n" required></label>
-    <label for="m">聯絡信箱<input id="m" type="email" required></label>
-    <label for="t">案件類型<select id="t"><option>接待中心</option><option>樣品屋</option><option>公設會所</option><option>其他</option></select></label>
-    <label for="c">需求說明<textarea id="c"></textarea></label>
-    <button class="send">送出</button>
-    <p class="ok" id="ok" hidden>已收到（示範用，表單不會真的寄出）。</p>
+  <form id="f" class="rv" novalidate>
+    <label class="f"><input id="n" placeholder=" " required><span>Name 姓名</span></label>
+    <label class="f"><input id="m" type="email" placeholder=" " required><span>Email 信箱</span></label>
+    <label class="f"><input id="ph" placeholder=" "><span>Phone 電話</span></label>
+    <label class="f"><select id="t"><option>接待中心</option><option>樣品屋 實品</option><option>公設會所</option><option>其他</option></select><span>Type 案件類型</span></label>
+    <label class="f full"><textarea id="c" placeholder=" "></textarea><span>Message 需求說明</span></label>
+    <div><button class="btn">Send <svg viewBox="0 0 22 10"><path d="M0 5h21M16 1l5 4-5 4"/></svg></button></div>
+    <p class="ok" id="ok" hidden>已收到，我們會盡快與你聯繫。（示範用，表單不會真的寄出）</p>
   </form>
+</div></section>
 </main>
-<footer id="site-footer"></footer>
-<script src="assets/main.js?v=2"></script>
-<script>document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').hidden=false;});</script>
+<script src="assets/main.js?v=3"></script>
+<script>
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();const f=e.target;if(!f.checkValidity()){f.reportValidity();return;}document.getElementById('ok').hidden=false;});
+ready();
+</script>
 </body>
 </html>
