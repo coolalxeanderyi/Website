@@ -7,20 +7,27 @@
 <meta name="description" content="壓力山大空間設計 Alexander Interior Design｜接待中心、樣品屋、公設會所與商業空間設計。">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&family=Roboto:wght@100;200;300;500;700&family=Noto+Sans+TC:wght@300;500;600&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=3">
+<link rel="stylesheet" href="assets/style.css?v=4">
+<script>document.documentElement.className='js'</script>
 </head>
 <body>
+<div class="loader" aria-hidden="true"><i></i></div>
 <main class="wrapper">
 <section class="hero" aria-label="主視覺">
-  <div class="bg on" style="background-image:url(assets/img/lobby.jpg?v=3)"></div>
-  <div class="bg" style="background-image:url(assets/img/bar.jpg?v=3)"></div>
-  <div class="bg" style="background-image:url(assets/img/reception.jpg?v=3)"></div>
-  <div class="ticker" aria-hidden="true"><ul><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li><li><h2>壓 力 山 大 空 間 設 計</h2><p>ALEXANDER INTERIOR DESIGN</p></li></ul></div>
-  <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">壓力山大空間設計 Alexander Interior Design</h1>
+  <div class="bg on" style="background-image:url(assets/img/reception.jpg?v=3)"></div>
+  <div class="bg" style="background-image:url(assets/img/arch.jpg?v=3)"></div>
+  <div class="bg" style="background-image:url(assets/img/corporate.jpg?v=3)"></div>
+  <div class="brand">
+    <div class="mark" aria-hidden="true"><b>A</b><span>壓力山大</span></div>
+    <i class="rule"></i>
+    <h1>壓力山大空間設計</h1>
+    <p>ALEXANDER INTERIOR DESIGN</p>
+    <i class="rule"></i>
+  </div>
   <button class="arrow prev" aria-label="上一張"><svg viewBox="0 0 22 22"><path d="M15 1 5 11l10 10"/></svg></button>
   <button class="arrow next" aria-label="下一張"><svg viewBox="0 0 22 22"><path d="m7 1 10 10L7 21"/></svg></button>
   <div class="count"><b id="cn">01</b><i id="bar"></i><span>03</span></div>
-  <div class="cap" id="cap">接待中心 · 霧砂之境</div>
+  <div class="cap" id="cap">接待中心 · 石序</div>
   <div class="scroll">SCROLL</div>
 </section>
 
@@ -66,7 +73,7 @@
   </div>
 </section>
 </main>
-<script src="assets/main.js?v=3"></script>
+<script src="assets/main.js?v=4"></script>
 <script>
 
 document.getElementById('cats').innerHTML = Object.entries(CATS).map(([k,c],i) => {
@@ -74,7 +81,7 @@ document.getElementById('cats').innerHTML = Object.entries(CATS).map(([k,c],i) =
   return `<a class="cat rv" href="portfolio.html?cat=${k}"><img src="${IMG(list[0].img)}" alt="" loading="lazy"><span class="no">0${i+1}</span><span class="t"><small>${c.en}</small><b>${c.zh}</b><i>${list.length} PROJECTS</i></span></a>`;
 }).join('');
 // 主視覺輪播
-const bgs=[...document.querySelectorAll('.hero .bg')], caps=['接待中心 · 霧砂之境','公設會所 · 夜曲吧台','接待中心 · 石序'];
+const bgs=[...document.querySelectorAll('.hero .bg')], caps=['接待中心 · 石序','樣品屋 實品 · 鼠尾草拱門','企業總部 · 企業總部大廳'];
 let n=0, tm;
 function show(k){ bgs[n].classList.remove('on'); n=(k+bgs.length)%bgs.length; bgs[n].classList.add('on');
   document.getElementById('cn').textContent='0'+(n+1); document.getElementById('cap').textContent=caps[n];

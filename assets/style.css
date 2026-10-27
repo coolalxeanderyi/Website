@@ -83,13 +83,24 @@ button{font:inherit;color:inherit}
 .hero{position:relative;height:100vh;min-height:560px;background:#000;overflow:hidden;color:#fff}
 .hero .bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.08);transition:opacity 1.6s ease,transform 8s ease-out}
 .hero .bg.on{opacity:1;transform:scale(1)}
-.hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.62)}
-.ticker{position:absolute;z-index:2;inset:0;display:flex;justify-content:center;overflow:hidden;-webkit-mask:linear-gradient(transparent,#000 22%,#000 78%,transparent);mask:linear-gradient(transparent,#000 22%,#000 78%,transparent)}
-.ticker ul{list-style:none;margin:0;padding:0;width:min(660px,78%);animation:tick 22s linear infinite}
-.ticker li{text-align:center;padding-block:22px 18px;border-bottom:1px solid rgba(255,255,255,.5)}
-.ticker h2{margin:0;font-family:var(--cn);font-weight:600;font-size:clamp(24px,3.2vw,38px);letter-spacing:.2em;line-height:1.4}
-.ticker p{margin:6px 0 0;font-family:var(--en);font-weight:200;font-size:clamp(10px,1.3vw,16px);letter-spacing:1.05em;margin-right:-1.05em;white-space:nowrap}
-@keyframes tick{to{transform:translateY(-50%)}}
+/* 遮罩：上下略暗（讓導覽與頁碼清楚），中間只壓暗到讓文字讀得到，照片保持明亮 */
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent 24%,transparent 76%,rgba(0,0,0,.45)),radial-gradient(ellipse 60% 55% at center,rgba(0,0,0,.5),rgba(0,0,0,.2))}
+/* 單一品牌標誌 */
+.brand{position:absolute;z-index:2;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-inline:20px;text-shadow:0 1px 20px rgba(0,0,0,.25)}
+.brand .mark{display:flex;align-items:flex-start;gap:8px;margin-bottom:36px}
+.brand .mark b{font-family:var(--en);font-weight:300;font-size:92px;line-height:.78}
+.brand .mark span{writing-mode:vertical-rl;font-family:var(--cn);font-size:12px;letter-spacing:.35em;border-left:1px solid rgba(255,255,255,.8);padding-left:6px;line-height:1}
+.brand .rule{display:block;width:min(540px,82vw);height:1px;background:rgba(255,255,255,.6)}
+.brand h1{margin:0;padding:22px 0 8px .42em;font-family:var(--cn);font-weight:600;font-size:clamp(26px,3.3vw,40px);letter-spacing:.42em;line-height:1.4}
+.brand p{margin:0;padding:0 0 22px .9em;font-family:var(--en);font-weight:200;font-size:clamp(10px,1.15vw,15px);letter-spacing:.9em;white-space:nowrap}
+/* 載入後依序淡入：標誌 → 細線展開 → 中文 → 英文 */
+.js .brand>*{opacity:0;transform:translateY(14px);transition:opacity 1.3s cubic-bezier(.2,.7,.2,1),transform 1.3s cubic-bezier(.2,.7,.2,1)}
+.js .brand .rule{transform:scaleX(0);transition:transform 1.6s cubic-bezier(.7,0,.2,1),opacity .4s}
+.loaded .brand>*{opacity:1;transform:none}
+.loaded .brand .mark{transition-delay:.35s}
+.loaded .brand .rule{opacity:1;transform:none;transition-delay:.7s}
+.loaded .brand h1{transition-delay:1s}
+.loaded .brand p{transition-delay:1.25s}
 .arrow{position:absolute;z-index:3;top:50%;width:46px;height:46px;margin-top:-23px;border:0;background:none;cursor:pointer;color:#fff;opacity:.7;transition:opacity .3s}
 .arrow:hover{opacity:1}
 .arrow.prev{left:24px}.arrow.next{right:24px}
@@ -298,7 +309,12 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:34px 30px}
   .js .rv{opacity:1;transform:none}
 }
 @media(max-width:700px){
-  .ticker ul{width:88%}
-  .ticker h2{font-size:21px;letter-spacing:.14em;white-space:nowrap}
-  .ticker p{font-size:9px;letter-spacing:.55em;margin-right:-.55em}
+  .brand .mark{margin-bottom:26px}
+  .brand .mark b{font-size:64px}
+  .brand h1{font-size:24px;letter-spacing:.3em;padding-left:.3em}
+  .brand p{font-size:9.5px;letter-spacing:.5em;padding-left:.5em}
 }
+/* 首頁主視覺已有品牌名稱：捲動前先隱藏右上角小字；手機細線縮短，避開左右箭頭 */
+.top .tag{transition:opacity .4s}
+body:not(.inner):not(.scrolled) .top .tag{opacity:0}
+@media(max-width:700px){.brand .rule{width:70vw}}

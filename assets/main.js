@@ -39,7 +39,6 @@ const MONO = (cls = '') => `<a class="mono ${cls}" href="index.html" aria-label=
 const cur = (f) => here === f || (f === 'portfolio.html' && here === 'project.html') ? ' aria-current="page"' : '';
 
 document.body.insertAdjacentHTML('afterbegin', `
-<div class="loader" aria-hidden="true"><i></i></div>
 <aside class="side">${MONO()}${SOCIAL}</aside>
 <header class="top">
   ${MONO('mono-s')}
