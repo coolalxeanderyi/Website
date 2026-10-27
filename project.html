@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>作品 | 澄岩空間設計</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header id="site-header"></header>
+<div class="page-head"><div class="wrap"><div class="crumb" id="crumb"></div><h1 id="ttl"></h1></div></div>
+<main class="wrap"><div class="detail" id="detail"></div><div class="pager" id="pager"></div></main>
+<footer id="site-footer"></footer>
+<script src="assets/main.js"></script>
+<script>
+const id=new URLSearchParams(location.search).get('id');
+const k=Math.max(0,PROJECTS.findIndex(p=>p.id===id)), p=PROJECTS[k];
+document.title=p.title+' | 澄岩空間設計';
+document.getElementById('ttl').textContent=p.title;
+document.getElementById('crumb').innerHTML=`<a href="index.html">首頁</a> ／ <a href="portfolio.html?cat=${p.cat}">${CATS[p.cat].zh}</a> ／ ${p.title}`;
+document.getElementById('detail').innerHTML=`<div><dl class="spec"><dt>類型</dt><dd>${CATS[p.cat].zh}</dd><dt>地點</dt><dd>${p.city}</dd><dt>坪數</dt><dd>${p.size}</dd><dt>年份</dt><dd>${p.year}</dd></dl><p>${p.text}</p></div>
+<div class="gallery"><div style="${swatch(p)}"></div><div style="${swatch(p,90)}"></div><div style="${swatch(p,200)}"></div></div>`;
+const prev=PROJECTS[(k-1+PROJECTS.length)%PROJECTS.length], next=PROJECTS[(k+1)%PROJECTS.length];
+document.getElementById('pager').innerHTML=`<a href="project.html?id=${prev.id}">← ${prev.title}</a><a href="project.html?id=${next.id}">${next.title} →</a>`;
+</script>
+</body>
+</html>
